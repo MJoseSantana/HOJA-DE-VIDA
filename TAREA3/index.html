@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Clientes</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Validar el formulario al intentar enviarlo
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                let cedula = document.getElementById('cedula').value;
+                let apellidos = document.getElementById('apellidos').value;
+                let nombres = document.getElementById('nombres').value;
+                let direccion = document.getElementById('direccion').value;
+                let email = document.getElementById('email').value;
+                let fechaNacimiento = document.getElementById('fecha_nacimiento').value;
+                let ciudad = document.getElementById('ciudad').value;
+
+                // Validar que todos los campos estén completos
+                if (!cedula || !apellidos || !nombres || !direccion || !email || !fechaNacimiento || !ciudad) {
+                    alert('Por favor, complete todos los campos.');
+                    event.preventDefault(); // Detener el envío si falta un campo
+                } else {
+                    alert('Formulario enviado con éxito.');
+                }
+            });
+
+            // Mostrar contador de caracteres en el campo "Cédula"
+            document.getElementById('cedula').addEventListener('input', function() {
+                let maxLength = 10; // Máximo de caracteres permitidos
+                let currentLength = this.value.length;
+                let remainingChars = maxLength - currentLength;
+
+                if (remainingChars >= 0) {
+                    document.getElementById('char-counter').textContent = 'Caracteres restantes: ' + remainingChars;
+                } else {
+                    document.getElementById('char-counter').textContent = 'Máximo alcanzado';
+                    this.value = this.value.slice(0, maxLength); // Limitar a 10 caracteres
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>Registro de Clientes</h1>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" maxlength="10" required>
+                    <small id="char-counter">Caracteres restantes: 10</small> <!-- Contador de caracteres -->
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" id="nombres" name="nombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad:</label>
+                    <input type="text" id="ciudad" name="ciudad" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Registrar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Recuadro derecho -->
+        <div class="info-box">
+            <div class="logo">
+                <!-- Espacio para el logo -->
+                <img src="logo.png" alt="Logo ULEAM" class="logo-img">
+            </div>
+            <h2>Universidad Laica Eloy Alfaro de Manabí</h2>
+            <p>Carrera: <strong>Tecnologías de la Información</strong></p>
+            <p>Facultad: <strong>Ciencias de la Vida y Tecnologías</strong></p>
+            <p>Materia: <strong>Aplicaciones Web I</strong></p>
+        </div>
+    </div>
+</body>
+</html>
